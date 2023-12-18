@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { eachDayOfInterval, endOfMonth, getDate, startOfMonth } from "date-fns";
+import "./App.css";
 
 function App() {
+  // Get the start date of the current month.
+  const startDate = startOfMonth(new Date());
+
+  // Get the end date of the current month.
+  const endDate = endOfMonth(new Date());
+
+  // Generate an array of dates for the entire month.
+  const datesOfMonth = eachDayOfInterval({ start: startDate, end: endDate });
+
+  // Get the day numbers for the current month.
+  const dayNumbers = datesOfMonth.map((date) => getDate(date));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* Display an array of day numbers for the current month. */}
+      <p>{JSON.stringify(dayNumbers)}</p>
     </div>
   );
 }
